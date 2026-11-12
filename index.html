@@ -162,6 +162,19 @@ section{padding-block:96px}
 .area li{display:flex;gap:10px;color:#cfd4df;font-size:15px}
 .area li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--red);margin-top:10px}
 
+/* ---------- Deklaracja ---------- */
+.promise{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px 48px;align-items:end;margin-top:48px;padding:36px 40px;background:var(--sheet);border:1px solid var(--line);border-radius:6px}
+@media (max-width:820px){.promise{grid-template-columns:1fr;padding:28px 22px}}
+.promise .style{font-size:12px;color:var(--blue);letter-spacing:.06em}
+.promise p{font-family:var(--f-display);font-size:clamp(23px,2.6vw,31px);line-height:1.3;font-weight:500;margin-top:10px;max-width:40ch}
+.promise p em{color:var(--red);font-style:italic}
+.files{display:flex;flex-wrap:wrap;gap:10px}
+.file{display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--line);border-radius:4px;background:var(--ink);font-size:14px;white-space:nowrap}
+.file i{width:22px;height:28px;flex:none;border-radius:2px;position:relative;background:var(--blue-deep)}
+.file i::after{content:"";position:absolute;right:0;top:0;border-style:solid;border-width:0 7px 7px 0;border-color:transparent var(--ink) #ffffff55 transparent}
+.file.r i{background:var(--red)}
+.file span{color:var(--muted);font-size:12px}
+
 /* ---------- Portfolio ---------- */
 .pf-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:24px}
 .filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:36px}
@@ -351,6 +364,17 @@ dialog::backdrop{background:#0d0f16ee}
     <div class="eyebrow">Zakres pracy</div>
     <h2 class="h2">Cztery style, <i>jeden</i> dokument</h2>
     <p class="lead">Każde zlecenie zaczynam od pytania, kto będzie czytał tekst i co ma z nim zrobić. Od tego zależy forma: rozdział pracy, raport z badania, artykuł do magazynu czy opowieść o marce.</p>
+    <div class="promise">
+      <div>
+        <div class="style">Styl: Cytat</div>
+        <p>W zależności od tego, czego oczekujecie, wskazujemy kierunek i robimy to, co do nas należy. Czy potrzebujecie draftów, ofert, czy briefów, ujmujemy je w <em>narrację, która pozwala osiągnąć sukces</em>.</p>
+      </div>
+      <div class="files" aria-label="Przykładowe formy dokumentów">
+        <div class="file"><i></i><div>Draft<br><span>tekst roboczy</span></div></div>
+        <div class="file r"><i></i><div>Oferta<br><span>dla klienta lub inwestora</span></div></div>
+        <div class="file"><i></i><div>Brief<br><span>krótko i na temat</span></div></div>
+      </div>
+    </div>
     <div class="areas">
       <div class="area">
         <div class="style">Styl: Nagłówek 1</div>
@@ -365,12 +389,12 @@ dialog::backdrop{background:#0d0f16ee}
       <div class="area">
         <div class="style">Styl: Cytat</div>
         <h3>Marka i marketing</h3>
-        <ul><li>marketing i content</li><li>głos marki i storytelling</li><li>komunikacja marketingowa</li><li>audyty stron i treści</li><li>treści wielobranżowe</li></ul>
+        <ul><li>marketing i content</li><li>głos marki i storytelling</li><li>komunikacja marketingowa</li><li>audyty stron i treści</li><li>oferty, briefy i teasery inwestycyjne</li><li>treści wielobranżowe</li></ul>
       </div>
       <div class="area">
         <div class="style">Styl: Normalny</div>
         <h3>Słowo i redakcja</h3>
-        <ul><li>ghostwriting</li><li>artykuły dziennikarskie</li><li>redakcja i korekta</li><li>autoryzacja wywiadów</li></ul>
+        <ul><li>ghostwriting</li><li>artykuły dziennikarskie</li><li>redakcja i korekta</li><li>drafty tekstów</li><li>autoryzacja wywiadów</li></ul>
       </div>
     </div>
   </div>
@@ -382,8 +406,8 @@ dialog::backdrop{background:#0d0f16ee}
     <div class="pf-head">
       <div>
         <div class="eyebrow">Portfolio</div>
-        <h2 class="h2">Wybrane <i>strony</i> z prac</h2>
-        <p class="lead">Fragmenty tekstów, raportów i analiz. Kliknij pracę, żeby przejrzeć wszystkie strony.</p>
+        <h2 class="h2">Wybrane strony ze <i>zrealizowanych</i> projektów, artykułów i tekstów</h2>
+        <p class="lead">Oferty, analizy, rozdziały naukowe i artykuły, które przygotowałam dla klientów i redakcji. Kliknij projekt, żeby przejrzeć wszystkie jego strony.</p>
       </div>
     </div>
     <div class="filters" id="filters" role="group" aria-label="Filtruj według kategorii"></div>
@@ -555,6 +579,7 @@ dialog::backdrop{background:#0d0f16ee}
 <script>
 (function(){
   var CATS={
+    oferty:"Oferty i briefy",
     analityka:"Analityka i badania",
     ekonomia:"Ekonomia i finanse",
     nauka:"Teksty naukowe",
@@ -562,6 +587,7 @@ dialog::backdrop{background:#0d0f16ee}
     marketing:"Marketing i marka"
   };
   var WORKS=[
+    {id:"brief",n:1,cat:["oferty","marketing"],tag:"Oferta dla inwestora",title:"Brief ofertowy dla anioła biznesu",desc:"Investment teaser dla marki ekokosmetyków trychologicznych: runda pre-seed, problem rynkowy i odpowiedź, linia produktowa MVP z marżami, potencjał rynku i strategia wejścia. Dane klienta ukryte."},
     {id:"stat",n:3,cat:["analityka","nauka"],tag:"Analiza statystyczna",title:"Analiza statystyczna w badaniu psychologicznym",desc:"Opis metody i grupy badanej (N = 98), rzetelność narzędzi PHQ-9 i ASQ (alfa Cronbacha), model teorii planowanego zachowania, tabele w standardzie APA."},
     {id:"jak",n:2,cat:["analityka"],tag:"Badania jakościowe",title:"Analiza treści wywiadów",desc:"Charakterystyka respondentów i kategoryzacja wypowiedzi: tabele kategorii, cytaty i interpretacja wyników."},
     {id:"ank",n:4,cat:["analityka","marketing"],tag:"Badanie ankietowe",title:"Media społecznościowe w marketingu firm",desc:"Aktywność firm na platformach, częstotliwość publikacji, ocena wpływu social mediów na rozpoznawalność marki. Wykresy i opis wyników."},
