@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Portfolio AdkaLab</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Portfolio Adrianny Łabędzkiej – AdkaLab Copywriting Agency. Teksty naukowe, analizy, dziennikarstwo i komunikacja marki.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Cormorant+SC:wght@500;600&family=Lato:ital,wght@0,400;0,700;0,900;1,400&display=swap">
+<style>
+/* Layout: strona jako dokument otwarty w edytorze AdkaLab – pasek menu u góry, linijka po prawej, pasek stanu u dołu (motyw z wizytówki). */
+:root{
+  --ink:#1d212d;        /* tło strony – granat z wizytówki, o ton ciemniej */
+  --sheet:#262b39;      /* powierzchnie, "kartka" */
+  --sheet-2:#2e3445;
+  --line:#3b4258;
+  --text:#eef0f5;
+  --muted:#a7adbf;
+  --red:#e2393f;        /* czerwień logotypu */
+  --red-soft:#e2393f22;
+  --blue:#3d91da;       /* błękit linijki i ikon */
+  --blue-deep:#2d6aa3;
+  --gold:#cfae78;       /* tylko sekcja wyróżnień – złoto Business Women Impact */
+  --f-display:"Cormorant Garamond","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --f-caps:"Cormorant SC","Cormorant Garamond",Georgia,serif;
+  --f-body:"Lato","Segoe UI",system-ui,-apple-system,sans-serif;
+  --gutter-l:max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r:max(16px, env(safe-area-inset-right, 0px));
+  --wrap:1180px;
+  --bar-h:40px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{background:var(--ink);color:var(--text);font-family:var(--f-body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--sheet)}
+a{color:inherit}
+img{display:block;max-width:100%;height:auto}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:2px}
+h1,h2,h3{text-wrap:balance;margin:0}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
+@media (min-width:1100px){.wrap{padding-right:max(56px, env(safe-area-inset-right,0px))}}
+
+/* ---------- Pasek menu ---------- */
+.menubar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--sheet) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.menubar .wrap{display:flex;align-items:center;gap:20px;min-height:56px}
+.dots{display:flex;gap:7px;flex:none}
+.dots i{width:12px;height:12px;border-radius:50%;display:block}
+.dots i:nth-child(1){background:var(--red)}.dots i:nth-child(2){background:#9db8d6}.dots i:nth-child(3){background:var(--blue)}
+.brandmark{font-family:var(--f-caps);font-size:19px;letter-spacing:.14em;text-decoration:none;flex:none;white-space:nowrap}
+.brandmark b{color:var(--red);font-weight:600}.brandmark span{color:var(--blue)}
+.menu{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;min-width:0;margin-left:auto}
+.menu::-webkit-scrollbar{display:none}
+.menu a{font-size:14px;color:var(--muted);text-decoration:none;padding:16px 10px 14px;white-space:nowrap;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.menu a:hover{color:var(--text)}
+.menu a.on{color:var(--text);border-bottom-color:var(--red)}
+@media (max-width:640px){.dots{display:none}.menubar .wrap{gap:12px}.menu a{padding-inline:8px;font-size:13.5px}}
+
+/* ---------- Linijka ---------- */
+.ruler{position:fixed;top:calc(env(safe-area-inset-top,0px) + 76px);bottom:calc(env(safe-area-inset-bottom,0px) + var(--bar-h) + 20px);right:calc(env(safe-area-inset-right,0px) + 18px);width:18px;z-index:40;display:none;
+  background:
+   repeating-linear-gradient(to bottom,var(--blue) 0 1.5px,transparent 1.5px 60px) right top/16px 100% no-repeat,
+   repeating-linear-gradient(to bottom,var(--blue) 0 1px,transparent 1px 12px) right top/8px 100% no-repeat;
+  border-right:1.5px solid var(--blue);opacity:.75}
+.ruler .mark{position:absolute;right:100%;top:0;width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;border-right:11px solid var(--red);transform:translateY(-7px);transition:top .12s linear}
+@media (min-width:1100px){.ruler{display:block}}
+
+/* ---------- Pasek stanu ---------- */
+.status{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--sheet);border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);padding-bottom:env(safe-area-inset-bottom,0px)}
+.status .wrap{display:flex;align-items:center;gap:0;min-height:var(--bar-h)}
+.status .seg{padding:0 14px;border-left:1px solid var(--line);white-space:nowrap}
+.status .seg:first-child{padding-left:0;border-left:0}
+.status em{font-style:normal;color:var(--blue);font-variant-numeric:tabular-nums}
+.status .right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.zoom{display:flex;align-items:center;gap:8px}
+.zoom .track{width:90px;height:2px;background:var(--blue);position:relative}
+.zoom .track::after{content:"";position:absolute;left:28%;top:-5px;width:12px;height:12px;border-radius:50%;background:var(--red)}
+@media (max-width:640px){.status .hide-s{display:none}.status .seg{padding:0 10px}}
+main{padding-bottom:calc(var(--bar-h) + 24px)}
+
+/* ---------- Wspólne ---------- */
+section{padding-block:96px}
+@media (max-width:700px){section{padding-block:68px}}
+.eyebrow{font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);font-weight:700;display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:"¶";color:var(--red);font-size:18px;letter-spacing:0;font-weight:900}
+.h2{font-family:var(--f-display);font-weight:600;font-size:clamp(34px,4.6vw,54px);line-height:1.05;margin-top:14px;letter-spacing:-.005em}
+.h2 i{color:var(--red);font-weight:600}
+.lead{color:var(--muted);max-width:62ch;margin-top:16px;font-size:17px}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:15px;text-decoration:none;padding:13px 22px;border-radius:4px;border:1.5px solid transparent;cursor:pointer;font-family:inherit;transition:background .2s,border-color .2s,transform .2s}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{background:#c92f35}
+.btn-line{border-color:var(--line);color:var(--text);background:transparent}
+.btn-line:hover{border-color:var(--blue)}
+.btn svg{width:16px;height:16px}
+
+/* ---------- Hero ---------- */
+.hero{padding-block:56px 72px}
+.doc{background:var(--sheet);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.toolbar{display:flex;align-items:center;gap:22px;padding:12px 26px;border-bottom:1px solid var(--line);color:#c9d4e6;font-size:17px;user-select:none;overflow:hidden}
+.toolbar .grp{display:flex;align-items:center;gap:16px;padding-right:22px;border-right:1px solid var(--line)}
+.toolbar .grp:last-child{border-right:0}
+.toolbar b{font-weight:900}.toolbar .it{font-style:italic;font-family:Georgia,serif}.toolbar .u{text-decoration:underline}
+.toolbar .al{display:inline-grid;gap:3px;width:18px}.toolbar .al i{height:2px;background:var(--blue);display:block}
+.toolbar .al.c i:nth-child(2n){width:70%;margin-inline:auto}.toolbar .al.c i{background:var(--red)}
+.toolbar .al.l i:nth-child(2n){width:65%}
+.toolbar .pil{color:var(--red);font-weight:900;font-size:20px}
+.toolbar .aa{border:1px solid var(--blue-deep);border-radius:4px;padding:1px 10px;font-size:15px}
+@media (max-width:640px){.toolbar .hide-s{display:none}.toolbar{padding:10px 18px;gap:14px}.toolbar .grp{gap:12px;padding-right:14px}}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.9fr);gap:48px;padding:52px 52px 56px;align-items:center}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr;padding:32px 22px 36px;gap:36px}}
+.hero .logo{width:min(340px,80%);margin-bottom:28px}
+.name{font-family:var(--f-caps);font-weight:600;font-size:clamp(20px,2.4vw,27px);letter-spacing:.2em;line-height:1.3}
+.roles{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px;font-family:var(--f-display);font-size:18px;color:var(--muted);line-height:1.25}
+.roles span{border-left:1.5px solid var(--red);padding-left:10px}
+.hero h1{font-family:var(--f-display);font-weight:600;font-size:clamp(40px,5.4vw,70px);line-height:1.02;margin-top:30px;letter-spacing:-.01em}
+.hero h1 em{color:var(--red);font-style:italic}
+.caret{display:inline-block;width:3px;height:.82em;background:var(--blue);margin-left:6px;vertical-align:-.06em;animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.hero .lede{color:var(--muted);font-size:17.5px;max-width:54ch;margin-top:22px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.frame{position:relative;margin:8px}
+.frame img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 22%;border-radius:2px}
+.frame::before{content:"";position:absolute;inset:-6px;border:1.5px solid var(--blue);pointer-events:none}
+.frame .h{position:absolute;width:10px;height:10px;background:var(--sheet);border:1.5px solid var(--blue)}
+.frame .h.a{top:-11px;left:-11px}.frame .h.b{top:-11px;right:-11px}.frame .h.c{bottom:-11px;left:-11px}.frame .h.d{bottom:-11px;right:-11px}
+.frame .h.e{top:-11px;left:calc(50% - 5px)}.frame .h.f{bottom:-11px;left:calc(50% - 5px)}
+.frame .cap{position:absolute;left:-6px;top:-34px;font-size:12px;color:var(--muted)}
+.creds{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line)}
+.creds div{padding:20px 26px;border-left:1px solid var(--line);font-size:14px;color:var(--muted);line-height:1.45}
+.creds div:first-child{border-left:0}
+.creds strong{display:block;color:var(--text);font-family:var(--f-display);font-size:20px;font-weight:600;margin-bottom:2px}
+@media (max-width:900px){.creds{grid-template-columns:1fr 1fr}.creds div:nth-child(3){border-left:0}.creds div:nth-child(n+3){border-top:1px solid var(--line)}}
+@media (max-width:480px){.creds{grid-template-columns:1fr}.creds div{border-left:0!important}.creds div+div{border-top:1px solid var(--line)}}
+
+/* ---------- O mnie ---------- */
+.about{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:64px;align-items:center}
+@media (max-width:900px){.about{grid-template-columns:1fr;gap:40px}}
+.photos{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:end}
+.photos img{width:100%;border-radius:3px;object-fit:cover}
+.photos .p1{aspect-ratio:4/5}
+.photos .p2{aspect-ratio:4/5;margin-bottom:48px}
+.photos .p3{grid-column:1/-1;aspect-ratio:16/9;object-position:50% 40%}
+.about-text p+p{margin-top:18px}
+.about-text p{color:#d3d7e2;max-width:62ch}
+.about-text .first::first-letter{font-family:var(--f-display);float:left;font-size:72px;line-height:.82;padding:6px 10px 0 0;color:var(--red);font-weight:700}
+
+/* ---------- Zakres ---------- */
+.areas{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:48px;border-top:1px solid var(--line)}
+@media (max-width:1000px){.areas{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.areas{grid-template-columns:1fr}}
+.area{padding:28px 26px 30px 0;border-bottom:1px solid var(--line)}
+@media (min-width:1001px){.area+.area{padding-left:26px;border-left:1px solid var(--line)}}
+@media (min-width:561px) and (max-width:1000px){.area:nth-child(2n){padding-left:26px;border-left:1px solid var(--line)}}
+.area .style{font-size:12px;color:var(--blue);letter-spacing:.06em}
+.area h3{font-family:var(--f-display);font-size:28px;font-weight:600;margin-top:6px;line-height:1.1}
+.area ul{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:8px}
+.area li{display:flex;gap:10px;color:#cfd4df;font-size:15px}
+.area li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--red);margin-top:10px}
+
+/* ---------- Portfolio ---------- */
+.pf-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:24px}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:36px}
+.chip{font:inherit;font-size:14px;color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;transition:all .2s;display:inline-flex;gap:8px;align-items:center}
+.chip small{font-size:12px;color:var(--blue);font-variant-numeric:tabular-nums}
+.chip:hover{color:var(--text);border-color:var(--blue)}
+.chip[aria-pressed="true"]{background:var(--text);color:var(--ink);border-color:var(--text)}
+.chip[aria-pressed="true"] small{color:var(--red)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 24px;margin-top:32px}
+@media (max-width:1000px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.grid{grid-template-columns:1fr}}
+.work{all:unset;cursor:pointer;display:flex;flex-direction:column;min-width:0}
+.work:focus-visible{outline:2px solid var(--blue);outline-offset:6px}
+.thumb{position:relative;background:#fff;border-radius:3px;overflow:hidden;aspect-ratio:16/10;box-shadow:0 0 0 1px var(--line)}
+.thumb img{width:100%;height:100%;object-fit:cover;object-position:left top;transition:transform .5s ease}
+.work:hover .thumb img{transform:scale(1.035)}
+.thumb .pages{position:absolute;right:10px;bottom:10px;background:var(--ink);color:var(--text);font-size:12px;padding:4px 9px;border-radius:3px;font-variant-numeric:tabular-nums}
+.work .tag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);font-weight:700;margin-top:16px}
+.work h3{font-family:var(--f-display);font-weight:600;font-size:24px;line-height:1.15;margin-top:4px}
+.work p{color:var(--muted);font-size:15px;margin-top:8px}
+.note{margin-top:36px;font-size:14px;color:var(--muted)}
+
+/* ---------- Publikacje ---------- */
+.books{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:44px}
+@media (max-width:820px){.books{grid-template-columns:1fr}}
+.book{display:grid;grid-template-columns:150px minmax(0,1fr);gap:26px;background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:26px}
+@media (max-width:460px){.book{grid-template-columns:1fr}.book img{width:150px}}
+.book img{width:100%;border-radius:2px;box-shadow:0 10px 30px #0006;aspect-ratio:1/1.414;object-fit:cover}
+.book .kind{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);font-weight:700}
+.book h3{font-family:var(--f-display);font-size:29px;font-weight:600;line-height:1.08;margin-top:6px}
+.book p{color:var(--muted);font-size:15px;margin-top:10px}
+.book .meta{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:14px;font-size:13px;color:#cfd4df}
+.book .meta span::before{content:"· ";color:var(--red)}
+.book a{display:inline-block;margin-top:16px;color:var(--text);font-weight:700;font-size:14px;text-decoration-color:var(--red);text-underline-offset:5px}
+.sci{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:56px;margin-top:80px;align-items:start}
+@media (max-width:900px){.sci{grid-template-columns:1fr;gap:28px}}
+.sci h3{font-family:var(--f-display);font-weight:600;font-size:34px;line-height:1.1}
+.sci .side p{color:var(--muted);margin-top:14px;font-size:15px}
+.orcid{display:inline-flex;align-items:center;gap:10px;margin-top:20px;text-decoration:none;border:1px solid var(--line);border-radius:4px;padding:10px 14px;font-size:14px}
+.orcid:hover{border-color:#a6ce39}
+.orcid b{background:#a6ce39;color:#fff;border-radius:50%;width:22px;height:22px;display:grid;place-items:center;font-size:11px}
+.events{list-style:none;padding:0;margin:0;border-top:1px solid var(--line)}
+.events li{display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;padding:22px 0;border-bottom:1px solid var(--line)}
+@media (max-width:520px){.events li{grid-template-columns:1fr;gap:6px}}
+.events .when{font-size:13px;color:var(--blue);font-variant-numeric:tabular-nums;padding-top:4px}
+.events .what{font-family:var(--f-display);font-size:22px;font-weight:600;line-height:1.2}
+.events .where{color:var(--muted);font-size:14.5px;margin-top:6px}
+
+/* ---------- Wyróżnienia ---------- */
+.awards{background:linear-gradient(180deg,var(--ink),#1a1a24 40%,var(--ink))}
+.award-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center;margin-top:44px}
+@media (max-width:900px){.award-top{grid-template-columns:1fr;gap:32px}}
+.award-top .eyebrow{color:var(--gold)}
+.award-name{font-family:var(--f-caps);font-size:clamp(28px,3.6vw,44px);letter-spacing:.06em;color:var(--gold);line-height:1.1}
+.award-year{font-family:var(--f-display);font-style:italic;color:var(--muted);font-size:20px;margin-top:4px}
+blockquote{margin:26px 0 0;padding:0 0 0 22px;border-left:2px solid var(--gold);font-family:var(--f-display);font-size:23px;line-height:1.4;font-style:italic;color:#e9e3d6;max-width:46ch}
+blockquote cite{display:block;font-family:var(--f-body);font-style:normal;font-size:13px;color:var(--muted);margin-top:12px}
+.award-top .img-btn img{aspect-ratio:1/1;object-fit:cover}
+.img-btn{all:unset;cursor:zoom-in;display:block;position:relative;border-radius:3px;overflow:hidden}
+.img-btn:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+.img-btn img{width:100%;transition:transform .5s ease}
+.img-btn:hover img{transform:scale(1.03)}
+.mosaic{columns:3 260px;column-gap:16px;margin-top:56px}
+.mosaic figure{break-inside:avoid;margin:0 0 16px}
+.mosaic figcaption{font-size:13px;color:var(--muted);padding:8px 2px 0}
+.partner{display:grid;grid-template-columns:auto minmax(0,1fr);gap:22px;align-items:center;margin-top:56px;padding:26px;border:1px solid var(--line);border-radius:6px;background:var(--sheet)}
+@media (max-width:560px){.partner{grid-template-columns:1fr}}
+.partner .img-btn{width:130px}
+.partner h3{font-family:var(--f-display);font-size:27px;font-weight:600;line-height:1.15}
+.partner p{color:var(--muted);margin-top:6px;font-size:15px}
+
+/* ---------- Kontakt ---------- */
+.contact{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;align-items:start}
+@media (max-width:900px){.contact{grid-template-columns:1fr}}
+.contact .h2{font-size:clamp(38px,5.6vw,66px)}
+.mail{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:30px;padding:14px 16px;background:var(--sheet);border:1px solid var(--line);border-radius:6px;max-width:520px}
+.mail span{font-size:clamp(18px,2.4vw,22px);font-weight:700;user-select:all;min-width:0;overflow-wrap:anywhere}
+.mail button{margin-left:auto}
+.copied{font-size:13px;color:var(--blue);min-height:20px;margin-top:8px}
+.cards{display:grid;gap:0;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;padding:16px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+.row dt{color:var(--muted);font-size:13px;padding-top:2px}
+.row dd{margin:0;overflow-wrap:anywhere}
+.row a{text-decoration-color:var(--blue);text-underline-offset:4px}
+.row a:hover{color:var(--blue)}
+.foot{margin-top:72px;padding-top:24px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;color:var(--muted);font-size:13px}
+
+/* ---------- Podgląd (lightbox) ---------- */
+dialog{border:0;padding:0;background:transparent;max-width:none;max-height:none;width:100vw;height:100vh;height:100dvh;color:var(--text)}
+dialog::backdrop{background:#0d0f16ee}
+.lb{position:absolute;inset:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding:calc(env(safe-area-inset-top,0px) + 14px) var(--gutter-r) calc(env(safe-area-inset-bottom,0px) + 14px) var(--gutter-l)}
+.lb-top{display:flex;align-items:center;gap:16px;max-width:1300px;width:100%;margin-inline:auto;padding-bottom:12px}
+.lb-top .t{font-family:var(--f-display);font-size:22px;font-weight:600;line-height:1.2;min-width:0}
+.lb-top .n{font-size:13px;color:var(--muted);margin-left:auto;font-variant-numeric:tabular-nums;white-space:nowrap}
+.icon-btn{all:unset;cursor:pointer;width:42px;height:42px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;background:var(--sheet);flex:none}
+.icon-btn:hover{border-color:var(--blue)}
+.icon-btn:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.icon-btn svg{width:18px;height:18px}
+.lb-stage{display:grid;place-items:center;min-height:0;overflow:auto}
+.lb-stage img{max-width:min(1300px,100%);max-height:100%;object-fit:contain;background:#fff;border-radius:2px}
+.lb-stage img.photo{background:transparent}
+.lb-nav{display:flex;justify-content:center;gap:12px;padding-top:12px}
+</style>
+<style>body{margin:0}</style>
+</head>
+<body>
+
+
+<nav class="menubar" aria-label="Menu główne">
+  <div class="wrap">
+    <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
+    <a class="brandmark" href="#start"><b>Adka</b><span>Lab</span></a>
+    <div class="menu" id="menu">
+      <a href="#o-mnie">O mnie</a>
+      <a href="#zakres">Zakres</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#publikacje">Publikacje</a>
+      <a href="#wyroznienia">Wyróżnienia</a>
+      <a href="#kontakt">Kontakt</a>
+    </div>
+  </div>
+</nav>
+
+<div class="ruler" aria-hidden="true"><span class="mark" id="mark"></span></div>
+
+<main id="doc">
+
+<!-- ================= START ================= -->
+<section class="hero" id="start" data-page>
+  <div class="wrap">
+    <div class="doc">
+      <div class="toolbar" aria-hidden="true">
+        <div class="grp"><b>B</b><span class="it">I</span><span class="u">U</span></div>
+        <div class="grp hide-s"><span class="al l"><i></i><i></i><i></i><i></i></span><span class="al c"><i></i><i></i><i></i><i></i></span><span class="al"><i></i><i></i><i></i><i></i></span></div>
+        <div class="grp"><span class="pil">¶</span><span class="aa">Aa&nbsp;⌄</span></div>
+      </div>
+      <div class="hero-grid">
+        <div>
+          <img class="logo" src="img/logo.png" alt="AdkaLab Adrianna Łabędzka – Copywriting Agency" width="680" height="218">
+          <div class="name">mgr Adrianna Łabędzka</div>
+          <div class="roles"><span>CEO AdkaLab</span><span>Dziennikarka Business Women Impact</span><span>Vice Dyrektor Regionalna PWCC</span></div>
+          <h1>Teksty, które łączą <em>naukę</em> z&nbsp;biznesem<span class="caret" aria-hidden="true"></span></h1>
+          <p class="lede">Piszę, redaguję i analizuję. Przygotowuję artykuły naukowe i dziennikarskie, prowadzę badania jakościowe i ilościowe, wspieram studentów przy pracach dyplomowych, a markom pomagam znaleźć własny głos.</p>
+          <div class="cta">
+            <a class="btn btn-red" href="#portfolio">Zobacz prace
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+            <a class="btn btn-line" href="#kontakt">Napisz do mnie</a>
+          </div>
+        </div>
+        <div class="frame">
+          <span class="cap">Obraz 1 – adkalab_2026.jpg</span>
+          <img src="img/p-hero.jpg" alt="Adrianna Łabędzka w czerwonym garniturze na scenie podczas wydarzenia „Let's talk about it”" width="825" height="1100">
+          <span class="h a"></span><span class="h b"></span><span class="h c"></span><span class="h d"></span><span class="h e"></span><span class="h f"></span>
+        </div>
+      </div>
+      <div class="creds">
+        <div><strong>Best in Business Award 2026</strong>dla AdkaLab za usługi redakcyjne i analityczne</div>
+        <div><strong>Partner gospodarczy</strong>Kongresu Kobiet Biznesu PWCC, Warszawa 2026</div>
+        <div><strong>Prelegentka</strong>III Ogólnopolska Konferencja Naukowa „Dni Medialne UKSW”</div>
+        <div><strong>Autorka e-booków</strong>o pisaniu prac dyplomowych i storytellingu marki</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= O MNIE ================= -->
+<section id="o-mnie" data-page>
+  <div class="wrap about">
+    <div class="photos">
+      <img class="p1" src="img/p-sofa.jpg" alt="Adrianna Łabędzka przy pracy z laptopem" loading="lazy" width="899" height="1100">
+      <img class="p2" src="img/p-lift.jpg" alt="Adrianna Łabędzka z identyfikatorem uczestniczki konferencji" loading="lazy" width="825" height="1100">
+      <img class="p3" src="img/p-window.jpg" alt="Praca nad tekstem przy oknie z widokiem na miasto" loading="lazy" width="1100" height="824">
+    </div>
+    <div class="about-text">
+      <div class="eyebrow">O mnie</div>
+      <h2 class="h2">Mówię językiem nauki <i>i</i> językiem rynku</h2>
+      <p class="first" style="margin-top:28px">Nazywam się Adrianna Łabędzka i prowadzę AdkaLab, agencję copywritingową z Kielc. Na co dzień łączę dwa światy, które rzadko rozmawiają ze sobą wprost: rygor pracy naukowej i komunikację, która ma działać w biznesie.</p>
+      <p>Piszę i redaguję teksty naukowe, opracowuję wyniki badań, przygotowuję analizy statystyczne i jakościowe. Studentom pomagam przejść przez pracę dyplomową od tematu do obrony. Firmom tworzę treści, audyty komunikacji i historie marki.</p>
+      <p>Jako dziennikarka Business Women Impact piszę o gospodarce, marketingu i technologii. W Polish Women Chamber of Commerce działam jako Vice Dyrektor Regionalna dla województwa świętokrzyskiego. Publikuję artykuły naukowe i występuję na konferencjach, ostatnio o generatywnej AI w nauce i biznesie oraz o bezpieczeństwie mieszkańców współczesnych metropolii.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ZAKRES ================= -->
+<section id="zakres" data-page>
+  <div class="wrap">
+    <div class="eyebrow">Zakres pracy</div>
+    <h2 class="h2">Cztery style, <i>jeden</i> dokument</h2>
+    <p class="lead">Każde zlecenie zaczynam od pytania, kto będzie czytał tekst i co ma z nim zrobić. Od tego zależy forma: rozdział pracy, raport z badania, artykuł do magazynu czy opowieść o marce.</p>
+    <div class="areas">
+      <div class="area">
+        <div class="style">Styl: Nagłówek 1</div>
+        <h3>Nauka</h3>
+        <ul><li>teksty i artykuły naukowe</li><li>research i przegląd literatury</li><li>metodologia badań naukowych</li><li>dydaktyka okołodyplomowa</li><li>nauka pisania</li></ul>
+      </div>
+      <div class="area">
+        <div class="style">Styl: Tabela</div>
+        <h3>Analityka</h3>
+        <ul><li>analizy jakościowe i ilościowe</li><li>statystyka i rzetelność narzędzi</li><li>badania ankietowe i wywiady</li><li>analizy ekonomiczne i finansowe</li></ul>
+      </div>
+      <div class="area">
+        <div class="style">Styl: Cytat</div>
+        <h3>Marka i marketing</h3>
+        <ul><li>marketing i content</li><li>głos marki i storytelling</li><li>komunikacja marketingowa</li><li>audyty stron i treści</li><li>treści wielobranżowe</li></ul>
+      </div>
+      <div class="area">
+        <div class="style">Styl: Normalny</div>
+        <h3>Słowo i redakcja</h3>
+        <ul><li>ghostwriting</li><li>artykuły dziennikarskie</li><li>redakcja i korekta</li><li>autoryzacja wywiadów</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PORTFOLIO ================= -->
+<section id="portfolio" data-page>
+  <div class="wrap">
+    <div class="pf-head">
+      <div>
+        <div class="eyebrow">Portfolio</div>
+        <h2 class="h2">Wybrane <i>strony</i> z prac</h2>
+        <p class="lead">Fragmenty tekstów, raportów i analiz. Kliknij pracę, żeby przejrzeć wszystkie strony.</p>
+      </div>
+    </div>
+    <div class="filters" id="filters" role="group" aria-label="Filtruj według kategorii"></div>
+    <div class="grid" id="grid"></div>
+    <p class="note">Pokazuję wybrane strony. Pełne teksty i dodatkowe przykłady z danej dziedziny udostępniam na prośbę.</p>
+  </div>
+</section>
+
+<!-- ================= PUBLIKACJE ================= -->
+<section id="publikacje" data-page>
+  <div class="wrap">
+    <div class="eyebrow">Publikacje</div>
+    <h2 class="h2">E-booki <i>i</i> nauka</h2>
+    <div class="books">
+      <article class="book">
+        <button class="img-btn" data-zoom="img/ebook-pestka.jpg" data-title="Praca dyplomowa? To pestka!"><img src="img/ebook-pestka.jpg" alt="Okładka e-booka „Praca dyplomowa? To pestka!”" loading="lazy"></button>
+        <div>
+          <div class="kind">E-book · warsztat pisania</div>
+          <h3>Praca dyplomowa? To pestka!</h3>
+          <p>Od pomysłu na temat do gotowego konspektu i szkieletu pracy. Test wykonalności tematu, szukanie źródeł, konspekt, który prowadzi przez całe pisanie.</p>
+          <div class="meta"><span>44 strony</span><span>dla studentów</span></div>
+          <a href="https://naffy.io/adkalab" target="_blank" rel="noopener">Dostępny w sklepie Naffy →</a>
+        </div>
+      </article>
+      <article class="book">
+        <button class="img-btn" data-zoom="img/ebook-marka.jpg" data-title="Opowiedz swoją markę"><img src="img/ebook-marka.jpg" alt="Okładka workbooka „Opowiedz swoją markę”" loading="lazy"></button>
+        <div>
+          <div class="kind">Workbook · storytelling</div>
+          <h3>Opowiedz swoją markę</h3>
+          <p>Warsztat storytellingu dla małych firm: od pustej kartki do historii, która realnie sprzedaje. Pytania robocze i ćwiczenia do wypełnienia.</p>
+          <div class="meta"><span>50 stron</span><span>dla małych firm</span></div>
+          <a href="https://naffy.io/adkalab" target="_blank" rel="noopener">Dostępny w sklepie Naffy →</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="sci">
+      <div class="side">
+        <h3>Działalność naukowa</h3>
+        <p>Publikuję artykuły naukowe z obszaru nauk o bezpieczeństwie, komunikacji i zarządzania. Afiliacja naukowa: Uniwersytet Jagielloński.</p>
+        <a class="orcid" href="https://orcid.org/0009-0004-9839-8244" target="_blank" rel="noopener"><b>iD</b> ORCID 0009-0004-9839-8244</a>
+      </div>
+      <ul class="events">
+        <li>
+          <div class="when">21.10.2026</div>
+          <div>
+            <div class="what">„Między wsparciem a wyręczeniem. Generatywna AI w praktyce naukowej i biznesowej”</div>
+            <div class="where">Referat · III Ogólnopolska Konferencja Naukowa „Dni Medialne UKSW”: Sztuczna inteligencja w dydaktyce · Wydział Nauk o Komunikacji i Dziennikarstwa UKSW, Warszawa</div>
+          </div>
+        </li>
+        <li>
+          <div class="when">Wystąpienie</div>
+          <div>
+            <div class="what">„Miasto, które czuwa, czy miasto, które śledzi?”</div>
+            <div class="where">Bezpieczeństwo jednostki we współczesnych metropoliach · IV Ogólnopolski Kongres Nauk o Bezpieczeństwie</div>
+          </div>
+        </li>
+        <li>
+          <div class="when">Artykuł</div>
+          <div>
+            <div class="what">Inteligentna metropolia: cyfryzacja, ekologia, ekonomia</div>
+            <div class="where">Artykuł naukowy o smart cities, rozwinięcie wystąpienia konferencyjnego</div>
+          </div>
+        </li>
+        <li>
+          <div class="when">W druku</div>
+          <div>
+            <div class="what">Rozdział w monografii „Europa”</div>
+            <div class="where">Po dwóch pozytywnych recenzjach wydawniczych, na etapie przygotowania do publikacji</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WYRÓŻNIENIA ================= -->
+<section id="wyroznienia" class="awards" data-page>
+  <div class="wrap">
+    <div class="eyebrow">Wyróżnienia i wydarzenia</div>
+    <h2 class="h2">Rok 2026 <i>na scenie</i></h2>
+    <div class="award-top">
+      <div>
+        <div class="award-name">Best in Business Award</div>
+        <div class="award-year">edycja 2026 · gala Hall of Achievement</div>
+        <blockquote>„…za rozwój specjalistycznych usług redakcyjnych i analitycznych, łączących wiedzę naukową z praktyką komunikacji biznesowej i marketingowej.”
+          <cite>Uzasadnienie z dyplomu przyznanego AdkaLab</cite></blockquote>
+      </div>
+      <button class="img-btn" data-zoom="img/g-dyplom.jpg" data-title="Dyplom Best in Business Award 2026"><img src="img/g-dyplom.jpg" alt="Dyplom Best in Business Award 2026 dla AdkaLab z pieczęcią lakową" loading="lazy" width="1100" height="1016"></button>
+    </div>
+
+    <div class="mosaic" id="mosaic">
+      <figure><button class="img-btn" data-zoom="img/p-award.jpg" data-title="Hall of Achievement"><img src="img/p-award.jpg" alt="Adrianna Łabędzka z dyplomem na tle ścianki Hall of Achievement" loading="lazy" width="873" height="1100"></button><figcaption>Hall of Achievement, odbiór nagrody</figcaption></figure>
+      <figure><button class="img-btn" data-zoom="img/g-wreczenie.jpg" data-title="Wręczenie nagrody"><img src="img/g-wreczenie.jpg" alt="Wręczenie nagrody Best in Business Award na scenie" loading="lazy" width="874" height="1100"></button><figcaption>Wręczenie nagrody</figcaption></figure>
+      <figure><button class="img-btn" data-zoom="img/g-wywiad.jpg" data-title="Wywiad ekspercki"><img src="img/g-wywiad.jpg" alt="Wywiad ekspercki przed ścianką z logotypami mediów" loading="lazy" width="808" height="1100"></button><figcaption>Wywiad ekspercki</figcaption></figure>
+      <figure><button class="img-btn" data-zoom="img/p-panel.jpg" data-title="Panel dyskusyjny „Let's talk about it”"><img src="img/p-panel.jpg" alt="Panel dyskusyjny pod neonem „Let's talk about it”" loading="lazy" width="1038" height="1100"></button><figcaption>Panel dyskusyjny „Let's talk about it”</figcaption></figure>
+      <figure><button class="img-btn" data-zoom="img/g-nagroda.jpg" data-title="Gala Hall of Achievement"><img src="img/g-nagroda.jpg" alt="Zdjęcie z dyplomem na gali Hall of Achievement" loading="lazy" width="741" height="1100"></button><figcaption>Gala Hall of Achievement</figcaption></figure>
+      <figure><button class="img-btn" data-zoom="img/g-kulisy.jpg" data-title="Kulisy nagrania"><img src="img/g-kulisy.jpg" alt="Kulisy nagrania wywiadu, oświetlenie i telefon na statywie" loading="lazy" width="768" height="1100"></button><figcaption>Kulisy nagrania wywiadu</figcaption></figure>
+      <figure><button class="img-btn" data-zoom="img/g-gala.jpg" data-title="Gala Hall of Achievement"><img src="img/g-gala.jpg" alt="Rozmowa na gali Hall of Achievement" loading="lazy" width="933" height="1100"></button><figcaption>Rozmowy na gali</figcaption></figure>
+      <figure><button class="img-btn" data-zoom="img/p-pwcc.jpg" data-title="Polish Women Chamber of Commerce"><img src="img/p-pwcc.jpg" alt="Adrianna Łabędzka przy ściance Polish Women Chamber of Commerce z magazynem Business Women" loading="lazy" width="1100" height="869"></button><figcaption>Polish Women Chamber of Commerce</figcaption></figure>
+    </div>
+
+    <div class="partner">
+      <button class="img-btn" data-zoom="img/ev-pwcc.jpg" data-title="Partner gospodarczy Kongresu Kobiet Biznesu PWCC"><img src="img/ev-pwcc.jpg" alt="Grafika: AdkaLab partnerem gospodarczym Kongresu Kobiet Biznesu PWCC" loading="lazy" width="619" height="1100"></button>
+      <div>
+        <div class="eyebrow">Partnerstwo</div>
+        <h3 style="margin-top:10px">AdkaLab partnerem gospodarczym Kongresu Kobiet Biznesu PWCC</h3>
+        <p>6 listopada 2026 · Sofitel Warsaw Victoria</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KONTAKT ================= -->
+<section id="kontakt" data-page>
+  <div class="wrap">
+    <div class="contact">
+      <div>
+        <div class="eyebrow">Kontakt</div>
+        <h2 class="h2">Masz tekst do napisania <i>albo</i> dane do przeanalizowania?</h2>
+        <p class="lead">Opisz krótko temat, termin i cel. Odpowiem z propozycją zakresu i wyceną.</p>
+        <div class="mail">
+          <span id="email">biuro@adkalab.pl</span>
+          <button class="btn btn-red" id="copy" type="button">Kopiuj adres</button>
+        </div>
+        <div class="copied" id="copied" aria-live="polite"></div>
+      </div>
+      <dl class="cards">
+        <div class="row"><dt>Telefon</dt><dd>573 995 066<br>792 654 762</dd></div>
+        <div class="row"><dt>Adres</dt><dd>AdkaLab Adrianna Łabędzka<br>ul. Dębowa 2/3, 25-539 Kielce</dd></div>
+        <div class="row"><dt>Strona</dt><dd><a href="https://adkalab.pl" target="_blank" rel="noopener">www.adkalab.pl</a></dd></div>
+        <div class="row"><dt>Sklep</dt><dd><a href="https://naffy.io/adkalab" target="_blank" rel="noopener">naffy.io/adkalab</a></dd></div>
+        <div class="row"><dt>Social media</dt><dd><a href="https://www.facebook.com/AdkaLab" target="_blank" rel="noopener">Facebook /AdkaLab</a><br><a href="https://www.instagram.com/adkalab_copywriting" target="_blank" rel="noopener">Instagram @adkalab_copywriting</a><br><a href="https://www.tiktok.com/@adkalab_copywriting" target="_blank" rel="noopener">TikTok @adkalab_copywriting</a></dd></div>
+      </dl>
+    </div>
+    <div class="foot">
+      <span>© 2026 AdkaLab Adrianna Łabędzka · Copywriting Agency</span>
+      <span>Kielce · cała Polska, zdalnie</span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="status" aria-label="Pasek stanu">
+  <div class="wrap">
+    <span class="seg">Strona <em id="pg">1</em> z <em id="pgs">7</em></span>
+    <span class="seg">Wyrazy: <em id="wc">–</em></span>
+    <span class="seg hide-s">Polski</span>
+    <span class="right hide-s"><span class="zoom" aria-hidden="true">−<span class="track"></span>+</span><span>100%</span></span>
+  </div>
+</footer>
+
+<dialog id="lb" aria-label="Podgląd">
+  <div class="lb">
+    <div class="lb-top">
+      <div class="t" id="lbTitle"></div>
+      <div class="n" id="lbCount"></div>
+      <button class="icon-btn" id="lbClose" aria-label="Zamknij podgląd"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3l10 10M13 3L3 13"/></svg></button>
+    </div>
+    <div class="lb-stage"><img id="lbImg" alt=""></div>
+    <div class="lb-nav" id="lbNav">
+      <button class="icon-btn" id="lbPrev" aria-label="Poprzednia strona"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 3L5 8l5 5"/></svg></button>
+      <button class="icon-btn" id="lbNext" aria-label="Następna strona"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg></button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  var CATS={
+    analityka:"Analityka i badania",
+    ekonomia:"Ekonomia i finanse",
+    nauka:"Teksty naukowe",
+    dziennikarstwo:"Dziennikarstwo i redakcja",
+    marketing:"Marketing i marka"
+  };
+  var WORKS=[
+    {id:"stat",n:3,cat:["analityka","nauka"],tag:"Analiza statystyczna",title:"Analiza statystyczna w badaniu psychologicznym",desc:"Opis metody i grupy badanej (N = 98), rzetelność narzędzi PHQ-9 i ASQ (alfa Cronbacha), model teorii planowanego zachowania, tabele w standardzie APA."},
+    {id:"jak",n:2,cat:["analityka"],tag:"Badania jakościowe",title:"Analiza treści wywiadów",desc:"Charakterystyka respondentów i kategoryzacja wypowiedzi: tabele kategorii, cytaty i interpretacja wyników."},
+    {id:"ank",n:4,cat:["analityka","marketing"],tag:"Badanie ankietowe",title:"Media społecznościowe w marketingu firm",desc:"Aktywność firm na platformach, częstotliwość publikacji, ocena wpływu social mediów na rozpoznawalność marki. Wykresy i opis wyników."},
+    {id:"reg",n:3,cat:["ekonomia","analityka"],tag:"Analiza regionalna",title:"Charakterystyka województwa świętokrzyskiego",desc:"Demografia, ruch naturalny, migracje i struktura gospodarki regionu na danych statystyki publicznej, z wykresami za lata 1995–2024."},
+    {id:"eko",n:3,cat:["ekonomia"],tag:"Rynek pracy",title:"Bezrobocie i polityka samorządów: Rybnik i Katowice",desc:"Porównanie stopy bezrobocia w latach 2015–2024 i narzędzi wsparcia przedsiębiorców, w tym ulg podatkowych."},
+    {id:"fin",n:4,cat:["ekonomia"],tag:"Analiza finansowa",title:"Sytuacja finansowa Zakładu Aktywności Zawodowej 2019–2022",desc:"Ocena kondycji finansowej przedsiębiorstwa społecznego: pojęcia zarządzania finansami, analiza wskaźnikowa, wnioski dla zarządzających."},
+    {id:"bez",n:2,cat:["nauka"],tag:"Tekst naukowy",title:"Obronność i system bezpieczeństwa narodowego RP",desc:"Rozdział teoretyczny: definicje i ewolucja pojęcia bezpieczeństwa, wymiary obronności, pełny aparat przypisów."},
+    {id:"ai",n:2,cat:["dziennikarstwo"],tag:"Artykuł dziennikarski",title:"Czujesz, że AI cię przyspiesza? Stoper może mieć inne zdanie",desc:"Produktywność z generatywną AI na podstawie badań z „Science”, NBER i METR, z rachunkiem kosztów, którego nie ma w prezentacjach."},
+    {id:"green",n:4,cat:["dziennikarstwo","marketing"],tag:"Artykuł dziennikarski",title:"Greenwashing. „Przecież to prawda”. Trzy najdroższe słowa w polskim marketingu",desc:"Jak deklaracje ekologiczne stają się ryzykiem prawnym i wizerunkowym. Przykłady, regulacje i wnioski dla marek."},
+    {id:"blog",n:2,cat:["marketing"],tag:"Audyt treści",title:"Audyt strony i treści dla marki osobistej",desc:"Analiza strony klientki: struktura, komunikacja oferty, SEO i rekomendacje zmian krok po kroku."},
+    {id:"red",n:1,cat:["dziennikarstwo"],tag:"Redakcja",title:"Redakcja wywiadu do magazynu gospodarczego",desc:"Korekta językowa, stylistyczna i dziennikarska z raportem zmian dla każdego pytania, przy zachowaniu autentyczności wypowiedzi."}
+  ];
+  function pages(w){var a=[];for(var i=1;i<=w.n;i++)a.push("img/"+w.id+"-"+i+".jpg");return a}
+  function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e}
+
+  // ---- portfolio grid ----
+  var grid=document.getElementById("grid"), filters=document.getElementById("filters");
+  WORKS.forEach(function(w){
+    var b=el("button","work");b.type="button";b.dataset.cat=w.cat.join(" ");
+    b.setAttribute("aria-label",w.title+" – otwórz podgląd ("+w.n+" "+(w.n===1?"strona":(w.n<5?"strony":"stron"))+")");
+    var th=el("div","thumb");var im=new Image();im.src="img/"+w.id+"-1.jpg";im.alt="";im.loading="lazy";th.appendChild(im);
+    th.appendChild(el("span","pages",w.n+" "+(w.n===1?"str.":"str.")));
+    b.appendChild(th);b.appendChild(el("div","tag",w.tag));b.appendChild(el("h3",null,w.title));b.appendChild(el("p",null,w.desc));
+    b.addEventListener("click",function(){openLB(pages(w),w.title,0,false)});
+    grid.appendChild(b);
+  });
+  function count(k){return k==="all"?WORKS.length:WORKS.filter(function(w){return w.cat.indexOf(k)>-1}).length}
+  [["all","Wszystkie"]].concat(Object.keys(CATS).map(function(k){return[k,CATS[k]]})).forEach(function(p,i){
+    var c=el("button","chip",p[1]+" <small>"+count(p[0])+"</small>");c.type="button";c.dataset.k=p[0];c.setAttribute("aria-pressed",i===0?"true":"false");
+    c.addEventListener("click",function(){
+      filters.querySelectorAll(".chip").forEach(function(x){x.setAttribute("aria-pressed","false")});c.setAttribute("aria-pressed","true");
+      grid.querySelectorAll(".work").forEach(function(w){w.hidden=!(p[0]==="all"||w.dataset.cat.split(" ").indexOf(p[0])>-1)});
+    });
+    filters.appendChild(c);
+  });
+
+  // ---- lightbox ----
+  var lb=document.getElementById("lb"),lbImg=document.getElementById("lbImg"),lbT=document.getElementById("lbTitle"),lbN=document.getElementById("lbCount"),lbNav=document.getElementById("lbNav");
+  var cur={list:[],i:0,title:""};
+  function show(){lbImg.src=cur.list[cur.i];lbImg.alt=cur.title+(cur.list.length>1?" – strona "+(cur.i+1):"");lbN.textContent=cur.list.length>1?("Strona "+(cur.i+1)+" z "+cur.list.length):"";lbNav.hidden=cur.list.length<2}
+  function openLB(list,title,i,photo){cur={list:list,i:i||0,title:title};lbT.textContent=title;lbImg.classList.toggle("photo",!!photo);show();
+    if(lb.showModal){try{lb.showModal()}catch(e){lb.setAttribute("open","")}}else lb.setAttribute("open","")}
+  function step(d){cur.i=(cur.i+d+cur.list.length)%cur.list.length;show()}
+  document.getElementById("lbPrev").onclick=function(){step(-1)};
+  document.getElementById("lbNext").onclick=function(){step(1)};
+  document.getElementById("lbClose").onclick=function(){lb.close?lb.close():lb.removeAttribute("open")};
+  lb.addEventListener("click",function(e){if(e.target===lb||e.target.classList.contains("lb-stage"))lb.close()});
+  lb.addEventListener("keydown",function(e){if(e.key==="ArrowRight")step(1);if(e.key==="ArrowLeft")step(-1)});
+  document.querySelectorAll("[data-zoom]").forEach(function(b){
+    b.addEventListener("click",function(){
+      var group=b.closest(".mosaic");
+      if(group){var all=[].slice.call(group.querySelectorAll("[data-zoom]"));openLB(all.map(function(x){return x.dataset.zoom}),"Wyróżnienia i wydarzenia 2026",all.indexOf(b),true)}
+      else openLB([b.dataset.zoom],b.dataset.title,0,true);
+    });
+  });
+
+  // ---- copy e-mail ----
+  var copied=document.getElementById("copied");
+  document.getElementById("copy").addEventListener("click",function(){
+    var t=document.getElementById("email").textContent.trim();
+    function fallback(){var r=document.createRange();r.selectNodeContents(document.getElementById("email"));var s=getSelection();s.removeAllRanges();s.addRange(r);copied.textContent="Adres zaznaczony – skopiuj go skrótem Ctrl+C."}
+    try{navigator.clipboard.writeText(t).then(function(){copied.textContent="Skopiowano: "+t},fallback)}catch(e){fallback()}
+  });
+
+  // ---- status bar: strona X z Y, licznik wyrazów, linijka ----
+  var secs=[].slice.call(document.querySelectorAll("[data-page]"));
+  document.getElementById("pgs").textContent=secs.length;
+  var words=(document.getElementById("doc").innerText||"").trim().split(/\s+/).filter(function(w){return /[\p{L}\d]/u.test(w)}).length;
+  document.getElementById("wc").textContent=words.toLocaleString("pl-PL");
+  var links=[].slice.call(document.querySelectorAll("#menu a")),pg=document.getElementById("pg"),mark=document.getElementById("mark");
+  function onScroll(){
+    var y=window.scrollY+window.innerHeight*0.35,idx=0;
+    secs.forEach(function(s,i){if(s.offsetTop<=y)idx=i});
+    pg.textContent=idx+1;
+    var id=secs[idx].id;links.forEach(function(a){a.classList.toggle("on",a.getAttribute("href")==="#"+id)});
+    var max=document.documentElement.scrollHeight-window.innerHeight;var p=max>0?window.scrollY/max:0;
+    mark.style.top=(p*100)+"%";
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});window.addEventListener("resize",onScroll);onScroll();
+})();
+</script>
+
+</body>
+</html>
